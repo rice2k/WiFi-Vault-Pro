@@ -27,7 +27,7 @@ from tkinter import filedialog, messagebox, ttk
 
 
 APP_NAME = "WiFi Vault Pro"
-APP_VERSION = "4.9"
+APP_VERSION = "4.10"
 APP_TAGLINE = "Network Intelligence Suite"
 AUTHOR = "Rice2k"
 HOMEPAGE = "https://github.com/rice2k"
@@ -52,6 +52,42 @@ INPUT_BG = "#0b1520"
 SIDEBAR = "#07111b"
 BUTTON_BG = "#172839"
 BUTTON_HOVER = "#1f3a50"
+
+
+def resource_path(*parts: str) -> Path:
+    base = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+    return base.joinpath(*parts)
+
+
+def set_app_icon(window: tk.Tk | tk.Toplevel) -> None:
+    ico_path = resource_path("assets", "wifi_vault_pro.ico")
+    png_path = resource_path("assets", "wifi_vault_pro.png")
+
+    try:
+        if is_windows() and ico_path.exists():
+            window.iconbitmap(str(ico_path))
+            return
+    except Exception:
+        pass
+
+    try:
+        if png_path.exists():
+            photo = tk.PhotoImage(file=str(png_path))
+            window.iconphoto(True, photo)
+            setattr(window, "_wifi_vault_icon", photo)
+    except Exception:
+        pass
+
+
+def set_windows_app_identity() -> None:
+    if not is_windows():
+        return
+    try:
+        import ctypes
+
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(f"Rice2k.WiFiVaultPro.{APP_VERSION}")
+    except Exception:
+        pass
 
 
 def is_windows() -> bool:
@@ -904,11 +940,13 @@ def safe_filename(value: str, fallback: str = "wifi_network") -> str:
 
 class WifiVaultProApp:
     def __init__(self):
+        set_windows_app_identity()
         self.root = tk.Tk()
         self.root.title(f"{APP_NAME} {APP_VERSION} by {AUTHOR}")
         self.root.geometry("1180x760")
         self.root.minsize(1060, 680)
         self.root.configure(bg=BG)
+        set_app_icon(self.root)
         self.is_closing = False
         self.ui_queue: queue.Queue = queue.Queue()
         self.clock_after_id: str | None = None
@@ -1650,6 +1688,7 @@ class WifiVaultProApp:
         dialog.geometry("520x560")
         dialog.minsize(500, 520)
         dialog.configure(bg=BG)
+        set_app_icon(dialog)
         dialog.transient(self.root)
         tk.Label(dialog, text="WiFi QR Connect", bg=BG, fg=TEXT, font=("Segoe UI", 16, "bold")).pack(anchor="w", padx=18, pady=(18, 4))
         tk.Label(dialog, text=profile.name, bg=BG, fg=CYAN, font=("Segoe UI", 11, "bold"), wraplength=390).pack(anchor="w", padx=18)

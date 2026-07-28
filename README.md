@@ -2,7 +2,7 @@
   <img src="docs/screenshots/dashboard.png" alt="WiFi Vault Pro dashboard" width="900">
 </p>
 
-<h1 align="center">WiFi Vault Pro 4.9</h1>
+<h1 align="center">WiFi Vault Pro 4.10</h1>
 
 <p align="center">
   <strong>Network Intelligence Suite for Windows</strong><br>
@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFiVaultPro_Rice2k.exe"><strong>Download Windows EXE</strong></a>
   &nbsp;|&nbsp;
-  <a href="https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFi_Vault_Pro_v4_9_Rice2k_Full_Package.zip"><strong>Full Package ZIP</strong></a>
+  <a href="https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFi_Vault_Pro_v4_10_Rice2k_Full_Package.zip"><strong>Full Package ZIP</strong></a>
   &nbsp;|&nbsp;
   <a href="https://github.com/rice2k/WiFi-Vault-Pro/releases/latest"><strong>Latest Release</strong></a>
   &nbsp;|&nbsp;
@@ -22,7 +22,7 @@
 <p align="center">
   <img alt="Platform" src="https://img.shields.io/badge/platform-Windows-22d3ee">
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-3ee37e">
-  <img alt="Version" src="https://img.shields.io/badge/version-4.9-9b7cff">
+  <img alt="Version" src="https://img.shields.io/badge/version-4.10-9b7cff">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-f5c451">
 </p>
 
@@ -37,8 +37,8 @@ The app is designed for computers and networks you own or are authorized to mana
 | Download | Description |
 | --- | --- |
 | [WiFiVaultPro_Rice2k.exe](https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFiVaultPro_Rice2k.exe) | Standalone Windows executable. Download and run directly. |
-| [Full Package ZIP](https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFi_Vault_Pro_v4_9_Rice2k_Full_Package.zip) | Complete package with EXE, source, scripts, docs, screenshots, tests, and README. |
-| [Source ZIP](https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFi_Vault_Pro_v4_9_Rice2k_Source.zip) | Source package with Python file, scripts, README, and requirements. |
+| [Full Package ZIP](https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFi_Vault_Pro_v4_10_Rice2k_Full_Package.zip) | Complete package with EXE, source, scripts, docs, screenshots, tests, icon assets, and README. |
+| [Source ZIP](https://github.com/rice2k/WiFi-Vault-Pro/releases/latest/download/WiFi_Vault_Pro_v4_10_Rice2k_Source.zip) | Source package with Python file, scripts, icon assets, README, and requirements. |
 | [Latest Release](https://github.com/rice2k/WiFi-Vault-Pro/releases/latest) | Release notes and all downloadable assets. |
 
 ## What It Does
@@ -118,6 +118,8 @@ Public IPv4/IPv6 lookup is off by default because it can slow down local scans. 
 | `install_requirements.bat` | Installs optional QR/build dependencies. |
 | `build_exe.bat` | Builds the standalone `.exe` with PyInstaller. |
 | `requirements.txt` | Optional dependencies. |
+| `assets/wifi_vault_pro.ico` | Custom Windows app, title-bar, taskbar, and EXE icon. |
+| `assets/wifi_vault_pro.png` | PNG icon preview and Tk fallback icon. |
 | `tests/smoke_tests.py` | Regression smoke tests. |
 | `docs/screenshots/` | GitHub screenshot assets. |
 
@@ -159,7 +161,7 @@ install_requirements.bat
 ## Build The EXE
 
 ```powershell
-py -3 -m PyInstaller --noconfirm --onefile --windowed --name "WiFiVaultPro_Rice2k" wifi_vault_pro.py
+py -3 -m PyInstaller --noconfirm --onefile --windowed --icon "assets\wifi_vault_pro.ico" --add-data "assets\wifi_vault_pro.ico;assets" --add-data "assets\wifi_vault_pro.png;assets" --name "WiFiVaultPro_Rice2k" wifi_vault_pro.py
 ```
 
 Or double-click:
@@ -191,6 +193,7 @@ Validated areas:
 - Empty adapter/driver result display
 - All-page Tkinter render smoke test
 - PyInstaller executable build
+- Custom icon asset loading
 
 ## Authorized Use
 

@@ -25,6 +25,15 @@ def install_common_mocks() -> None:
     appmod.messagebox.showinfo = lambda *args, **kwargs: None
 
 
+def test_icon_assets() -> None:
+    ico = appmod.resource_path("assets", "wifi_vault_pro.ico")
+    png = appmod.resource_path("assets", "wifi_vault_pro.png")
+    assert ico.exists() and ico.stat().st_size > 1024
+    assert png.exists() and png.stat().st_size > 1024
+    assert ico.read_bytes()[:4] == b"\x00\x00\x01\x00"
+    assert png.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
+
+
 def test_ip_parsing() -> None:
     assert appmod.extract_ipv4("2603:6081:2df0:be90:c93b:19e4:4c7a:de12") == ""
     sample = """Windows IP Configuration
@@ -155,10 +164,10 @@ def test_page_render_smoke() -> None:
 
 
 if __name__ == "__main__":
+    test_icon_assets()
     test_ip_parsing()
     test_fast_start_no_auto_scan()
     test_quick_refresh()
     test_full_scan_loads_drivers()
     test_page_render_smoke()
     print("smoke_tests_ok")
-

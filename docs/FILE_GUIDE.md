@@ -7,6 +7,8 @@
 | `install_requirements.bat` | Installs optional dependencies for QR images and executable builds. |
 | `build_exe.bat` | Builds a standalone Windows `.exe` with PyInstaller. |
 | `requirements.txt` | Optional package list: QR support, Pillow, and PyInstaller. |
+| `assets/wifi_vault_pro.ico` | Custom Windows icon used by the app window, helper dialogs, taskbar, and built `.exe`. |
+| `assets/wifi_vault_pro.png` | PNG preview/fallback version of the app icon. |
 | `tests/smoke_tests.py` | Lightweight regression checks for parsers, fast startup, Quick Refresh, Full Scan driver loading, and page rendering. |
 | `docs/screenshots/` | GitHub README screenshots generated with safe demo data. |
 | `docs/RELEASE_NOTES.md` | Release details for the latest packaged build. |
@@ -26,4 +28,3 @@
 | Network Tools | Runs Ping, DNS Lookup, Traceroute, IP Config, ARP, Routes, Ports, and repair commands. |
 | Reports | Exports HTML, JSON, and CSV files for troubleshooting or inventory records. |
 | Settings | Controls 12/24 hour clock, startup Quick Refresh, public IP lookup, and password inclusion in reports. |
-
